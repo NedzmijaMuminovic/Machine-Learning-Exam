@@ -32,6 +32,7 @@ print(df.isnull().sum())
 # 2. korak (Čišćenje podataka)
 # Popunjavanje nedostajućih vrijednosti u numeričkim kolonama sa srednjim vrijednostima
 numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
+numerical_cols = numerical_cols.drop('PatientID') # Izbacivanje 'PatientID' kolone iz numeričkih kolona jer nije relevantna za modeliranje
 imputer_num = SimpleImputer(strategy='mean')
 df[numerical_cols] = imputer_num.fit_transform(df[numerical_cols])
 
